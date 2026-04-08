@@ -1,14 +1,14 @@
 ---
 version: 3
 dependencies:
-  ansible_core:
-    package_pip: ansible-core>=2.16
-  ansible_runner:
-    package_pip: ansible-runner>=2.4
   galaxy: requirements.yml
   python: requirements.txt
   system: []
 
+additional_build_steps:
+  prepend_galaxy:
+    - RUN pip install --upgrade ansible-core ansible-runner
+
 images:
   base_image:
-    name: quay.io/ansible/creator-base:latest
+    name: quay.io/ansible/awx-ee:latest
